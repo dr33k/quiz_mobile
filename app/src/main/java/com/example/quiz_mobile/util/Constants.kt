@@ -3,6 +3,8 @@ package com.example.quiz_mobile.util
 class Constants{
     companion object{
         const val PLAYER_NAME_KEY = "PLAYER_NAME"
+        const val QUESTION_COUNT = 20
+        const val OPTION_COUNT = 4
 
         val COUNTRY_MAP: Map<String, String> = mapOf(
             "AD" to "Andorra",

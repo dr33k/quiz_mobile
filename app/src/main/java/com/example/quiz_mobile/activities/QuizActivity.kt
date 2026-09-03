@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.quiz_mobile.R
+import com.example.quiz_mobile.modela.Question
 import com.example.quiz_mobile.util.Constants
+import kotlin.random.Random
 
 class QuizActivity : AppCompatActivity() {
 
@@ -19,9 +21,8 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var optionButton2: Button
     private lateinit var optionButton3: Button
     private lateinit var optionButton4: Button
+    private lateinit var countryCodeList: List<String>
     private lateinit var checkButton: Button
-
-    private val questionCount = 20
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,26 @@ class QuizActivity : AppCompatActivity() {
         checkButton = findViewById(R.id.quizCheckButton)
 
 
-        val countryCodeList = Constants.COUNTRY_MAP.keys.toList()
+        countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
+    }
+
+    fun prepareQuestion(): Question {
+        val countryIndex = Random.nextInt(countryCodeList.size)
+        val countryCode = countryCodeList[countryIndex]
+
+        val optionIndexes = mutableSetOf(countryIndex) //Add correct answer to set of options
+
+        while(optionIndexes.size < Constants.OPTION_COUNT){
+            optionIndexes += Random.nextInt(countryCodeList.size)
+        }
+
+        val options: Array<String> = optionIndexes.map { countryCodeList[it] }.toTypedArray()
+
+        return Question(
+            "${countryCode.lowercase()}.png",
+            options,
+            countryCode
+        )
     }
 }
