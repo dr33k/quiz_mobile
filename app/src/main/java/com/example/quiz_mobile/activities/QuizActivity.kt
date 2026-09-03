@@ -21,8 +21,9 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var optionButton2: Button
     private lateinit var optionButton3: Button
     private lateinit var optionButton4: Button
-    private lateinit var countryCodeList: List<String>
     private lateinit var checkButton: Button
+
+    private lateinit var countryCodeList: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,17 +52,15 @@ class QuizActivity : AppCompatActivity() {
         val countryIndex = Random.nextInt(countryCodeList.size)
         val countryCode = countryCodeList[countryIndex]
 
-        val optionIndexes = mutableSetOf(countryIndex) //Add correct answer to set of options
+        val options= mutableSetOf(countryCode) //Add correct answer to set of options
 
-        while(optionIndexes.size < Constants.OPTION_COUNT){
-            optionIndexes += Random.nextInt(countryCodeList.size)
+        while(options.size < Constants.OPTION_COUNT){
+            options += countryCodeList[Random.nextInt(countryCodeList.size)]
         }
-
-        val options: Array<String> = optionIndexes.map { countryCodeList[it] }.toTypedArray()
 
         return Question(
             "${countryCode.lowercase()}.png",
-            options,
+            options.toTypedArray(),
             countryCode
         )
     }
