@@ -9,5 +9,5 @@
     <string name="start_btn_text">Start</string>
 
     <!--Quiz Activity-->
-
+    <string name="quiz_prompt_text">Identify the flag</string>
 </resources>

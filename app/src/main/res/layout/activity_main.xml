@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#660E75"
+    android:background="@color/primary"
     tools:context=".activities.MainActivity">
 
     <TextView
@@ -78,9 +78,9 @@
                 android:id="@+id/startButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:backgroundTint="#660E75"
                 android:text="@string/start_btn_text"
-                android:textAllCaps="true"/>
+                android:textAllCaps="true"
+                app:backgroundTint="@color/primary" />
 
         </LinearLayout>
 

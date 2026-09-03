@@ -7,4 +7,130 @@
     android:layout_height="match_parent"
     tools:context=".activities.QuizActivity">
 
+    <LinearLayout
+        android:layout_width="412dp"
+        android:layout_height="731dp"
+        android:orientation="vertical"
+        android:padding="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="27dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.Material.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/quizPromptTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="@string/quiz_prompt_text"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="372dp"
+            android:layout_height="159dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+
+        <Button
+            android:id="@+id/optionButton1"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="20sp"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/black"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="2sp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="2sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <Button
+            android:id="@+id/optionButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="20sp"
+            android:fontFamily="sans-serif-condensed"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="2sp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="2sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <Button
+            android:id="@+id/optionButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="20sp"
+            android:fontFamily="sans-serif-condensed"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="2sp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="2sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <Button
+            android:id="@+id/optionButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="20sp"
+            android:fontFamily="sans-serif-condensed"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="2sp"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="2sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
+        <Button
+            android:id="@+id/quizCheckButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Check"
+            android:textAllCaps="true"
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="10sp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
