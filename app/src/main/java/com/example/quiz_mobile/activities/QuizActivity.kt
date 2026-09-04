@@ -24,7 +24,7 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var checkButton: Button
 
     private lateinit var countryCodeList: List<String>
-    private lateinit var selectedCountryCode: String
+    private var selectedButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,6 @@ class QuizActivity : AppCompatActivity() {
         optionButton4 = findViewById(R.id.optionButton4)
         checkButton = findViewById(R.id.quizCheckButton)
 
-
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
         setOptions()
@@ -56,10 +55,15 @@ class QuizActivity : AppCompatActivity() {
         val buttons = listOf(optionButton1, optionButton2, optionButton3, optionButton4)
         buttons.forEachIndexed { index, button ->
             button.tag = question.options[index]
+            button.text = Constants.COUNTRY_MAP[question.options[index]]
             button.setOnClickListener {
+                selectedButton?.let{ selected ->
+                    selected.setBackgroundColor(getColor(R.color.white))
+                    selected.setTextColor(getColor(R.color.black))
+                }
                 button.setBackgroundColor(getColor(R.color.primary))
                 button.setTextColor(getColor(R.color.white))
-                selectedCountryCode = button.tag as String
+                selectedButton = button
             }
         }
     }
