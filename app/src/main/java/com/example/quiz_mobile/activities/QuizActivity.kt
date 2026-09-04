@@ -1,5 +1,7 @@
 package com.example.quiz_mobile.activities
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -11,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.quiz_mobile.R
 import com.example.quiz_mobile.modela.Question
 import com.example.quiz_mobile.util.Constants
+import java.time.temporal.TemporalAmount
 import kotlin.random.Random
 
 class QuizActivity : AppCompatActivity() {
@@ -46,18 +49,25 @@ class QuizActivity : AppCompatActivity() {
 
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
-        setOptions()
-
+        val questions = prepareQuestions(Constants.QUESTION_COUNT)
+        setImage(questions[0])
+        setOptions(questions[0])
     }
 
-    fun setOptions(){
-        val question = prepareQuestion()
+
+    fun setImage(question: Question) {
+        val inputStream = imageView.context.assets.open(question.image)
+        val drawable = Drawable.createFromStream(inputStream, null)
+        imageView.setImageDrawable(drawable)
+    }
+
+    fun setOptions(question: Question) {
         val buttons = listOf(optionButton1, optionButton2, optionButton3, optionButton4)
         buttons.forEachIndexed { index, button ->
             button.tag = question.options[index]
             button.text = Constants.COUNTRY_MAP[question.options[index]]
             button.setOnClickListener {
-                selectedButton?.let{ selected ->
+                selectedButton?.let { selected ->
                     selected.setBackgroundColor(getColor(R.color.white))
                     selected.setTextColor(getColor(R.color.black))
                 }
@@ -68,20 +78,21 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    fun prepareQuestion(): Question {
-        val countryIndex = Random.nextInt(countryCodeList.size)
-        val countryCode = countryCodeList[countryIndex]
+    fun prepareQuestions(amount: Int): Array<Question> {
+        return Array(amount) { index ->
+            val countryIndex = Random.nextInt(countryCodeList.size)
+            val countryCode = countryCodeList[countryIndex]
 
-        val options= mutableSetOf(countryCode) //Add correct answer to set of options
+            val options = mutableSetOf(countryCode) //Add correct answer to set of options
+            while (options.size < Constants.OPTION_COUNT) {
+                options += countryCodeList[Random.nextInt(countryCodeList.size)]
+            }
 
-        while(options.size < Constants.OPTION_COUNT){
-            options += countryCodeList[Random.nextInt(countryCodeList.size)]
+            Question(
+                "images/${countryCode.lowercase()}.png",
+                options.toTypedArray(),
+                countryCode
+            )
         }
-
-        return Question(
-            "${countryCode.lowercase()}.png",
-            options.toTypedArray(),
-            countryCode
-        )
     }
 }
