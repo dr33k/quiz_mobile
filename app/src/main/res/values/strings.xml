@@ -10,4 +10,5 @@
 
     <!--Quiz Activity-->
     <string name="quiz_prompt_text">Identify the flag</string>
+    <string name="check_button_text">Check</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.quiz_mobile.activities
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.Button
@@ -13,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.quiz_mobile.R
 import com.example.quiz_mobile.modela.Question
 import com.example.quiz_mobile.util.Constants
-import java.time.temporal.TemporalAmount
 import kotlin.random.Random
 
 class QuizActivity : AppCompatActivity() {
@@ -24,10 +22,13 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var optionButton2: Button
     private lateinit var optionButton3: Button
     private lateinit var optionButton4: Button
+    private val optionButtons = listOf(optionButton1, optionButton2, optionButton3, optionButton4)
+
     private lateinit var checkButton: Button
 
     private lateinit var countryCodeList: List<String>
-    private var selectedButton: Button? = null
+    private lateinit var correctAnswerButtonRef: Button
+    private var selectedButtonRef: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,9 +50,24 @@ class QuizActivity : AppCompatActivity() {
 
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
-        val questions = prepareQuestions(Constants.QUESTION_COUNT)
-        setImage(questions[0])
-        setOptions(questions[0])
+        val qIterator = prepareQuestions(Constants.QUESTION_COUNT).iterator()
+        val question = qIterator.next()
+        setImage(question)
+        setOptions(question)
+
+        checkButton.setOnClickListener {
+            optionButtons.forEach { it.isEnabled = false }
+            selectedButtonRef?.let{ selected ->
+                if(selected.tag == question.correct){
+                    selected.setBackgroundColor(getColor(R.color.correct))
+                    correctAnswerButtonRef.setTextColor(getColor(R.color.white))
+                }else {
+                    selected.setBackgroundColor(getColor(R.color.danger))
+                    correctAnswerButtonRef.setBackgroundColor(getColor(R.color.correct))
+                    correctAnswerButtonRef.setTextColor(getColor(R.color.white))
+                }
+            }
+        }
     }
 
 
@@ -62,36 +78,47 @@ class QuizActivity : AppCompatActivity() {
     }
 
     fun setOptions(question: Question) {
-        val buttons = listOf(optionButton1, optionButton2, optionButton3, optionButton4)
-        buttons.forEachIndexed { index, button ->
-            button.tag = question.options[index]
-            button.text = Constants.COUNTRY_MAP[question.options[index]]
-            button.setOnClickListener {
-                selectedButton?.let { selected ->
+        optionButtons.forEachIndexed { index, optionButton ->
+            optionButton.tag = question.options[index]
+            optionButton.text = Constants.COUNTRY_MAP[question.options[index]]
+            optionButton.setOnClickListener {
+                selectedButtonRef?.let { selected ->
                     selected.setBackgroundColor(getColor(R.color.white))
                     selected.setTextColor(getColor(R.color.black))
                 }
-                button.setBackgroundColor(getColor(R.color.primary))
-                button.setTextColor(getColor(R.color.white))
-                selectedButton = button
+                correctAnswerButtonRef?.let { correct ->
+                    correct.setBackgroundColor(getColor(R.color.white))
+                    correct.setTextColor(getColor(R.color.black))
+                }
+
+                optionButton.setBackgroundColor(getColor(R.color.primary))
+                optionButton.setTextColor(getColor(R.color.white))
+                selectedButtonRef = optionButton
+
+                checkButton.isEnabled = true
+                checkButton.setBackgroundColor(getColor(R.color.primary))
+            }
+
+            if(index == question.correct){
+                correctAnswerButtonRef = optionButton
             }
         }
     }
 
     fun prepareQuestions(amount: Int): Array<Question> {
-        return Array(amount) { index ->
-            val countryIndex = Random.nextInt(countryCodeList.size)
-            val countryCode = countryCodeList[countryIndex]
+        return Array(amount) { questionsIndex ->
+            val correctAnswer = countryCodeList[Random.nextInt(countryCodeList.size)]
 
-            val options = mutableSetOf(countryCode) //Add correct answer to set of options
+            val options = mutableSetOf(correctAnswer) //Add correct answer to set of options
             while (options.size < Constants.OPTION_COUNT) {
                 options += countryCodeList[Random.nextInt(countryCodeList.size)]
             }
+            val optionsShuffledArray = options.shuffled().toTypedArray()
 
             Question(
-                "images/${countryCode.lowercase()}.png",
-                options.toTypedArray(),
-                countryCode
+                "images/${correctAnswer.lowercase()}.png",
+                optionsShuffledArray,
+                optionsShuffledArray.indexOf(correctAnswer)
             )
         }
     }

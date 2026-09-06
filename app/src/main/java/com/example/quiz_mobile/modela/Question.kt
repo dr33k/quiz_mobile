@@ -1,7 +1,7 @@
 package com.example.quiz_mobile.modela
 
-class Question (
+ class Question (
     val image: String,
     val options: Array<String>,
-    val correct: String
+    val correct: Int
 )
