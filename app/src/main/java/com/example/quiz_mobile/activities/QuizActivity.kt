@@ -18,11 +18,7 @@ class QuizActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var imageView: ImageView
-    private lateinit var optionButton1: Button
-    private lateinit var optionButton2: Button
-    private lateinit var optionButton3: Button
-    private lateinit var optionButton4: Button
-    private val optionButtons = listOf(optionButton1, optionButton2, optionButton3, optionButton4)
+    private lateinit var optionButtons: Array<Button>
 
     private lateinit var checkButton: Button
 
@@ -42,10 +38,13 @@ class QuizActivity : AppCompatActivity() {
 
         progressBar = findViewById(R.id.progressBar)
         imageView = findViewById(R.id.imageView)
-        optionButton1 = findViewById(R.id.optionButton1)
-        optionButton2 = findViewById(R.id.optionButton2)
-        optionButton3 = findViewById(R.id.optionButton3)
-        optionButton4 = findViewById(R.id.optionButton4)
+        optionButtons = arrayOf(
+            findViewById(R.id.optionButton1),
+            findViewById(R.id.optionButton2),
+            findViewById(R.id.optionButton3),
+            findViewById(R.id.optionButton4)
+        )
+
         checkButton = findViewById(R.id.quizCheckButton)
 
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
@@ -60,7 +59,7 @@ class QuizActivity : AppCompatActivity() {
             selectedButtonRef?.let{ selected ->
                 if(selected.tag == question.correct){
                     selected.setBackgroundColor(getColor(R.color.correct))
-                    correctAnswerButtonRef.setTextColor(getColor(R.color.white))
+                    selected.setTextColor(getColor(R.color.white))
                 }else {
                     selected.setBackgroundColor(getColor(R.color.danger))
                     correctAnswerButtonRef.setBackgroundColor(getColor(R.color.correct))
@@ -86,7 +85,7 @@ class QuizActivity : AppCompatActivity() {
                     selected.setBackgroundColor(getColor(R.color.white))
                     selected.setTextColor(getColor(R.color.black))
                 }
-                correctAnswerButtonRef?.let { correct ->
+                correctAnswerButtonRef.let { correct ->
                     correct.setBackgroundColor(getColor(R.color.white))
                     correct.setTextColor(getColor(R.color.black))
                 }
