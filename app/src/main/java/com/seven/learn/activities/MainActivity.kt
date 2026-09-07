@@ -1,4 +1,4 @@
-package com.example.quiz_mobile.activities
+package com.seven.learn.activities
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,8 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.quiz_mobile.R
-import com.example.quiz_mobile.util.Constants
+import com.seven.learn.R
+import com.seven.learn.util.Constants
 
 class MainActivity : AppCompatActivity() {
     private lateinit var namePromptTextView: TextView

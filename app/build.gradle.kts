@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.quiz_mobile"
+    namespace = "com.seven.learn"
     compileSdk {
         version = release(37) {
             minorApiLevel = 1
@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.quiz_mobile"
+        applicationId = "com.seven.learn"
         minSdk = 24
         targetSdk = 37
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.example.quiz_mobile.activities
+package com.seven.learn.activities
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -9,9 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.quiz_mobile.R
-import com.example.quiz_mobile.modela.Question
-import com.example.quiz_mobile.util.Constants
+import com.seven.learn.R
+import com.seven.learn.modela.Question
+import com.seven.learn.util.Constants
 import kotlin.random.Random
 
 class QuizActivity : AppCompatActivity() {

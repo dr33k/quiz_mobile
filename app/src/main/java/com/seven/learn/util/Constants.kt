@@ -1,4 +1,4 @@
-package com.example.quiz_mobile.util
+package com.seven.learn.util
 
 class Constants{
     companion object{

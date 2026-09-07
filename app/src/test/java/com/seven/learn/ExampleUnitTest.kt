@@ -1,4 +1,4 @@
-package com.example.quiz_mobile
+package com.seven.learn
 
 import org.junit.Test
 

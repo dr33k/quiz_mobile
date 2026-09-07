@@ -1,3 +1,3 @@
-package com.example.quiz_mobile.modela
+package com.seven.learn.modela
 
 class Player (val name: String, score: Int)
