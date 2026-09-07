@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">quiz_mobile</string>
+    <string name="app_name">seven_learn</string>
 
     <!-- Main Activity -->
-    <string name="main_banner_text">Country Flag Quiz</string>
+    <string name="main_banner_text">Seven Learn</string>
     <string name="welcome_text">Welcome</string>
     <string name="name_prompt_text">Please enter your name</string>
     <string name="empty_input_error_text">Empty input</string>

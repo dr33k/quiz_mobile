@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "quiz_mobile"
+rootProject.name = "seven_learn"
 include(":app")
