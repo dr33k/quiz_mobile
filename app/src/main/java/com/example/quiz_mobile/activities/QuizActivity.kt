@@ -62,9 +62,11 @@ class QuizActivity : AppCompatActivity() {
                     selected.setTextColor(getColor(R.color.white))
                 }else {
                     selected.setBackgroundColor(getColor(R.color.danger))
+                    selected.setTextColor(getColor(R.color.white))
                     correctAnswerButtonRef.setBackgroundColor(getColor(R.color.correct))
                     correctAnswerButtonRef.setTextColor(getColor(R.color.white))
                 }
+                progressBar.incrementProgressBy(100/Constants.QUESTION_COUNT)
             }
         }
     }
