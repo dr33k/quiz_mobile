@@ -129,8 +129,8 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    fun prepareQuestions(amount: Int): Array<Question> {
-        return Array(amount) { questionsIndex ->
+    fun prepareQuestions(amount: Int): Array<Question> =
+        Array(amount) {
             val correctAnswer = countryCodeList[Random.nextInt(countryCodeList.size)]
 
             val options = mutableSetOf(correctAnswer) //Add correct answer to set of options
@@ -144,6 +144,6 @@ class QuizActivity : AppCompatActivity() {
                 optionsShuffledArray,
                 optionsShuffledArray.indexOf(correctAnswer)
             )
-        }
+
     }
 }

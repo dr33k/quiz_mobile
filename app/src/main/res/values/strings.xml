@@ -11,4 +11,7 @@
     <!--Quiz Activity-->
     <string name="quiz_prompt_text">Identify the flag</string>
     <string name="check_button_text">Check</string>
+
+    <string name="bottom_sheet_title_text"> </string>
+    <string name="bottom_sheet_next_button_text">Next</string>
 </resources>
