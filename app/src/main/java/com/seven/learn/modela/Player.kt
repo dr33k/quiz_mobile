@@ -1,3 +1,7 @@
 package com.seven.learn.modela
 
-class Player (val name: String, score: Int)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Player (val name: String, var score: Int = 0): Parcelable

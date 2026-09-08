@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.seven.learn.R
+import com.seven.learn.modela.Player
 import com.seven.learn.util.Constants
 
 class MainActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
             Intent(this@MainActivity, QuizActivity::class.java).apply{
                 with(this){
-                    putExtra(Constants.PLAYER_NAME_KEY, playerName)
+                    putExtra(Constants.PLAYER_KEY, Player(playerName))
                 }
             }.also { startActivity(it) }
         }

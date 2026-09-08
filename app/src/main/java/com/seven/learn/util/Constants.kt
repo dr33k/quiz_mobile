@@ -2,7 +2,7 @@ package com.seven.learn.util
 
 class Constants{
     companion object{
-        const val PLAYER_NAME_KEY = "PLAYER_NAME"
+        const val PLAYER_KEY = "PLAYER"
         const val QUESTION_COUNT = 20
         const val OPTION_COUNT = 4
 

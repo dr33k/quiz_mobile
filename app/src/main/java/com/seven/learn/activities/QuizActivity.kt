@@ -1,6 +1,7 @@
 package com.seven.learn.activities
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.seven.learn.R
+import com.seven.learn.modela.Player
 import com.seven.learn.modela.Question
 import com.seven.learn.util.Constants
 import kotlin.random.Random
@@ -25,6 +27,8 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var countryCodeList: List<String>
     private lateinit var correctAnswerButtonRef: Button
     private var selectedButtonRef: Button? = null
+
+    private var player: Player? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,7 @@ class QuizActivity : AppCompatActivity() {
             findViewById(R.id.optionButton3),
             findViewById(R.id.optionButton4)
         )
+        player = extractPlayerExtra()
 
         checkButton = findViewById(R.id.quizCheckButton)
 
@@ -69,6 +74,12 @@ class QuizActivity : AppCompatActivity() {
                 progressBar.incrementProgressBy(100/Constants.QUESTION_COUNT)
             }
         }
+    }
+
+    private fun extractPlayerExtra(): Player? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        intent.getParcelableExtra(Constants.PLAYER_KEY, Player::class.java)
+    } else {
+        intent.getParcelableExtra<Player>(Constants.PLAYER_KEY)
     }
 
 
