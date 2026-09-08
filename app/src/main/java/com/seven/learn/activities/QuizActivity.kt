@@ -48,9 +48,9 @@ class QuizActivity : AppCompatActivity() {
             findViewById(R.id.optionButton3),
             findViewById(R.id.optionButton4)
         )
-        player = extractPlayerExtra()
-
         checkButton = findViewById(R.id.quizCheckButton)
+
+        player = extractPlayerExtra()
 
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
@@ -59,28 +59,40 @@ class QuizActivity : AppCompatActivity() {
         setImage(question)
         setOptions(question)
 
-        checkButton.setOnClickListener {
+        checkButton.setOnClickListener { checkBtn ->
+            //Disable all buttons
             optionButtons.forEach { it.isEnabled = false }
-            selectedButtonRef?.let{ selected ->
-                if(selected.tag == question.correct){
-                    selected.setBackgroundColor(getColor(R.color.correct))
-                    selected.setTextColor(getColor(R.color.white))
-                }else {
-                    selected.setBackgroundColor(getColor(R.color.danger))
-                    selected.setTextColor(getColor(R.color.white))
+            checkBtn.isEnabled = false
+
+            val correctAnswer = selectedButtonRef?.tag == question.options[question.correct]
+
+            //Color selections
+            selectedButtonRef?.let {
+                if (correctAnswer) {//Correct
+                    it.setBackgroundColor(getColor(R.color.correct))
+                    it.setTextColor(getColor(R.color.white))
+                } else {//Wrong
+                    it.setBackgroundColor(getColor(R.color.danger))
+                    it.setTextColor(getColor(R.color.white))
                     correctAnswerButtonRef.setBackgroundColor(getColor(R.color.correct))
                     correctAnswerButtonRef.setTextColor(getColor(R.color.white))
                 }
-                progressBar.incrementProgressBy(100/Constants.QUESTION_COUNT)
             }
+            //Increment progress bar
+            progressBar.incrementProgressBy(100 / Constants.QUESTION_COUNT)
+
+            //Increment score
+            player?.let { it.score += if(correctAnswer) 1 else 0}
+
         }
     }
 
-    private fun extractPlayerExtra(): Player? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        intent.getParcelableExtra(Constants.PLAYER_KEY, Player::class.java)
-    } else {
-        intent.getParcelableExtra<Player>(Constants.PLAYER_KEY)
-    }
+    private fun extractPlayerExtra(): Player? =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(Constants.PLAYER_KEY, Player::class.java)
+        } else {
+            intent.getParcelableExtra<Player>(Constants.PLAYER_KEY)
+        }
 
 
     fun setImage(question: Question) {
@@ -111,7 +123,7 @@ class QuizActivity : AppCompatActivity() {
                 checkButton.setBackgroundColor(getColor(R.color.primary))
             }
 
-            if(index == question.correct){
+            if (index == question.correct) {
                 correctAnswerButtonRef = optionButton
             }
         }

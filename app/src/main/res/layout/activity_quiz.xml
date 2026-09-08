@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E2E1E1"
     tools:context=".activities.QuizActivity">
 
     <LinearLayout
@@ -122,6 +123,7 @@
             app:strokeWidth="2sp" />
 
         <Space
+            android:id="@+id/ena"
             android:layout_width="match_parent"
             android:layout_height="35dp" />
 
@@ -129,9 +131,9 @@
             android:id="@+id/quizCheckButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/check_button_text"
-            android:enabled="false"
             android:textAllCaps="true"
             app:backgroundTint="@color/grey"
             app:cornerRadius="10sp" />
