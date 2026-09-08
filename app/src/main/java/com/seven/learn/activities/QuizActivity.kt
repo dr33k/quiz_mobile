@@ -56,9 +56,7 @@ class QuizActivity : AppCompatActivity() {
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
         val qIterator = prepareQuestions(Constants.QUESTION_COUNT).iterator()
-        val question = qIterator.next()
-        setImage(question)
-        setOptions(question)
+        val question = displayNextQuestion(qIterator)
 
         checkButton.setOnClickListener {
             //Disable all buttons
@@ -85,9 +83,15 @@ class QuizActivity : AppCompatActivity() {
             //Increment score
             player?.let { it.score += if(correctAnswer) 1 else 0}
 
-            BottomSheet(correctAnswer).show(supportFragmentManager, "")
+            BottomSheet(correctAnswer){
+                if(qIterator.hasNext()){
+                    displayNextQuestion(qIterator)
+                }
+            }.show(supportFragmentManager, "")
         }
     }
+
+
 
     private fun extractPlayerExtra(): Player? =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -96,6 +100,12 @@ class QuizActivity : AppCompatActivity() {
             intent.getParcelableExtra<Player>(Constants.PLAYER_KEY)
         }
 
+    fun displayNextQuestion(qIterator: Iterator<Question>): Question{
+        val question = qIterator.next()
+        setImage(question)
+        setOptions(question)
+        return question
+    }
 
     fun setImage(question: Question) {
         val inputStream = imageView.context.assets.open(question.image)
@@ -105,8 +115,12 @@ class QuizActivity : AppCompatActivity() {
 
     fun setOptions(question: Question) {
         optionButtons.forEachIndexed { index, optionButton ->
+            optionButton.isEnabled = true
             optionButton.tag = question.options[index]
             optionButton.text = Constants.COUNTRY_MAP[question.options[index]]
+            optionButton.setBackgroundColor(getColor(R.color.white))
+            optionButton.setTextColor(getColor(R.color.black))
+
             optionButton.setOnClickListener {
                 selectedButtonRef?.let { selected ->
                     selected.setBackgroundColor(getColor(R.color.white))

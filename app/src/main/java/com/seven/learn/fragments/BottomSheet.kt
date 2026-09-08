@@ -10,7 +10,10 @@ import com.seven.learn.R
 import com.seven.learn.util.Constants
 import kotlin.random.Random
 
-class BottomSheet(val isCorrectAnswer: Boolean = false): BottomSheetDialogFragment() {
+class BottomSheet(
+    val isCorrectAnswer: Boolean = false,
+    val callback: () -> Unit
+): BottomSheetDialogFragment() {
     private lateinit var bottomSheetTitle: TextView
 
     override fun onCreateView(
@@ -31,6 +34,7 @@ class BottomSheet(val isCorrectAnswer: Boolean = false): BottomSheetDialogFragme
 
         view.findViewById<View>(R.id.bottomSheetButton).setOnClickListener {
             dismiss()
+            callback()
         }
     }
 }
