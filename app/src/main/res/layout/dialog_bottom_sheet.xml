@@ -9,10 +9,10 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_height="11dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/bottomSheetTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
@@ -25,12 +25,14 @@
         android:layout_height="28dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bottomSheetButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primary"
         android:text="@string/bottom_sheet_next_button_text"
         android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textColorLink="@color/white"
         app:cornerRadius="5sp" />
 
 </LinearLayout>

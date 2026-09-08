@@ -6,6 +6,10 @@ class Constants{
         const val QUESTION_COUNT = 20
         const val OPTION_COUNT = 4
 
+        val REMARKS: Map<Boolean, Array<String>> = mapOf(
+            true to arrayOf("That's Right", "Correct", "Great Job", "Awesome", "Super", "Well Done"),
+            false to arrayOf("Not Quite", "Not Really")
+        )
         val COUNTRY_MAP: Map<String, String> = mapOf(
             "AD" to "Andorra",
             "AE" to "United Arab Emirates",

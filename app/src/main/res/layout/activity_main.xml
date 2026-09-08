@@ -79,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/start_btn_text"
                 android:textAllCaps="true"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/primary" />
 
         </LinearLayout>

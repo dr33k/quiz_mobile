@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.seven.learn.R
+import com.seven.learn.fragments.BottomSheet
 import com.seven.learn.modela.Player
 import com.seven.learn.modela.Question
 import com.seven.learn.util.Constants
@@ -59,10 +60,10 @@ class QuizActivity : AppCompatActivity() {
         setImage(question)
         setOptions(question)
 
-        checkButton.setOnClickListener { checkBtn ->
+        checkButton.setOnClickListener {
             //Disable all buttons
             optionButtons.forEach { it.isEnabled = false }
-            checkBtn.isEnabled = false
+            checkButton.isEnabled = false
 
             val correctAnswer = selectedButtonRef?.tag == question.options[question.correct]
 
@@ -84,6 +85,7 @@ class QuizActivity : AppCompatActivity() {
             //Increment score
             player?.let { it.score += if(correctAnswer) 1 else 0}
 
+            BottomSheet(correctAnswer).show(supportFragmentManager, "")
         }
     }
 
@@ -121,6 +123,7 @@ class QuizActivity : AppCompatActivity() {
 
                 checkButton.isEnabled = true
                 checkButton.setBackgroundColor(getColor(R.color.primary))
+                checkButton.setTextColor(getColor(R.color.white))
             }
 
             if (index == question.correct) {
