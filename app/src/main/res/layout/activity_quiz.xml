@@ -42,6 +42,7 @@
             android:fontFamily="sans-serif-condensed"
             android:text="@string/quiz_prompt_text"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <Space
@@ -60,14 +61,14 @@
 
         <Button
             android:id="@+id/optionButton1"
-            android:layout_width="372dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="20sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="2sp"
+            app:cornerRadius="5sp"
             app:strokeColor="@color/primary"
             app:strokeWidth="2sp" />
 
@@ -78,13 +79,13 @@
         <Button
             android:id="@+id/optionButton2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="20sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="2sp"
+            app:cornerRadius="5sp"
             app:strokeColor="@color/primary"
             app:strokeWidth="2sp" />
 
@@ -95,13 +96,13 @@
         <Button
             android:id="@+id/optionButton3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="20sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="2sp"
+            app:cornerRadius="5sp"
             app:strokeColor="@color/primary"
             app:strokeWidth="2sp" />
 
@@ -112,13 +113,13 @@
         <Button
             android:id="@+id/optionButton4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:fadingEdge="vertical"
             android:fadingEdgeLength="20sp"
             android:fontFamily="sans-serif-condensed"
             android:textColor="@color/black"
             app:backgroundTint="#FFFFFF"
-            app:cornerRadius="2sp"
+            app:cornerRadius="5sp"
             app:strokeColor="@color/primary"
             app:strokeWidth="2sp" />
 
