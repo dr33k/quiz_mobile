@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.seven.learn.R
 import com.seven.learn.util.Constants
@@ -27,8 +29,19 @@ class BottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bottomSheetTitle = view.findViewById<TextView>(R.id.bottomSheetTitle)
+        //Disable tap-outside-dismiss
+        isCancelable = false
 
+        //Disable dragging dialog
+        val dialog = dialog as? BottomSheetDialog
+        dialog?.behavior?.apply {
+            this.isHideable = false
+            this.isDraggable = false
+            this.state = BottomSheetBehavior.STATE_EXPANDED
+        }
+
+        //Set random titles
+        bottomSheetTitle = view.findViewById<TextView>(R.id.bottomSheetTitle)
         val remarksArray= Constants.REMARKS[isCorrectAnswer]
         bottomSheetTitle.text = remarksArray?.get(Random.nextInt(remarksArray.size))
 

@@ -62,6 +62,7 @@ class QuizActivity : AppCompatActivity() {
             //Disable all buttons
             optionButtons.forEach { it.isEnabled = false }
             checkButton.isEnabled = false
+            checkButton.setBackgroundColor(getColor(R.color.grey))
 
             val correctAnswer = selectedButtonRef?.tag == question.options[question.correct]
 
