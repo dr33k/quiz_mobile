@@ -100,20 +100,20 @@ class QuizActivity : AppCompatActivity() {
     }
 
 
-    fun displayNextQuestion(qIterator: Iterator<Question>): Question{
+    private fun displayNextQuestion(qIterator: Iterator<Question>): Question{
         val question = qIterator.next()
         setImage(question)
         setOptions(question)
         return question
     }
 
-    fun setImage(question: Question) {
+    private fun setImage(question: Question) {
         val inputStream = imageView.context.assets.open(question.image)
         val drawable = Drawable.createFromStream(inputStream, null)
         imageView.setImageDrawable(drawable)
     }
 
-    fun setOptions(question: Question) {
+    private fun setOptions(question: Question) {
         optionButtons.forEachIndexed { index, optionButton ->
             optionButton.isEnabled = true
             optionButton.tag = question.options[index]
@@ -146,7 +146,7 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    fun prepareQuestions(amount: Int): Array<Question> =
+    private fun prepareQuestions(amount: Int): Array<Question> =
         Array(amount) {
             val correctAnswer = countryCodeList[Random.nextInt(countryCodeList.size)]
 
