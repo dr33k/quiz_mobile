@@ -56,7 +56,7 @@ class QuizActivity : AppCompatActivity() {
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
         val qIterator = prepareQuestions(Constants.QUESTION_COUNT).iterator()
-        val question = displayNextQuestion(qIterator)
+        var question = displayNextQuestion(qIterator)
 
         checkButton.setOnClickListener {
             //Disable all buttons
@@ -64,11 +64,10 @@ class QuizActivity : AppCompatActivity() {
             checkButton.isEnabled = false
             checkButton.setBackgroundColor(getColor(R.color.grey))
 
-            val correctAnswer = selectedButtonRef?.tag == question.options[question.correct]
-
+            val isCorrectAnswer = selectedButtonRef?.tag == question.options[question.correct]
             //Color selections
             selectedButtonRef?.let {
-                if (correctAnswer) {//Correct
+                if (isCorrectAnswer) {//Correct
                     it.setBackgroundColor(getColor(R.color.correct))
                     it.setTextColor(getColor(R.color.white))
                 } else {//Wrong
@@ -82,11 +81,11 @@ class QuizActivity : AppCompatActivity() {
             progressBar.incrementProgressBy(100 / Constants.QUESTION_COUNT)
 
             //Increment score
-            player?.let { it.score += if(correctAnswer) 1 else 0}
+            player?.let { it.score += if(isCorrectAnswer) 1 else 0}
 
-            BottomSheet(correctAnswer){
+            BottomSheet.newInstance(isCorrectAnswer){
                 if(qIterator.hasNext()){
-                    displayNextQuestion(qIterator)
+                    question = displayNextQuestion(qIterator)
                 }
             }.show(supportFragmentManager, "")
         }
