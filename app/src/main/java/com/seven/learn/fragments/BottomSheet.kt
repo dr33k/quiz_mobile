@@ -42,7 +42,14 @@ class BottomSheet : BottomSheetDialogFragment() {
         //Set random titles
         val isCorrectAnswer = arguments?.getBoolean(IS_CORRECT_ANSWER_KEY) ?: false
         val remarksArray = Constants.REMARKS[isCorrectAnswer]
+
         bottomSheetTitle.text = remarksArray?.get(Random.nextInt(remarksArray.size))
+        bottomSheetTitle.setTextColor(
+            view.context.getColor(
+                if (isCorrectAnswer) R.color.correct
+                else R.color.danger
+            )
+        )
 
         view.findViewById<View>(R.id.bottomSheetButton).setOnClickListener {
             dismiss()
