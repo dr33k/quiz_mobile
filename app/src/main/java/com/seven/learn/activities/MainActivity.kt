@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.seven.learn.R
 import com.seven.learn.modela.Player
 import com.seven.learn.util.Constants
+import com.seven.learn.util.Utils
 
 class MainActivity : AppCompatActivity() {
     private lateinit var namePromptTextView: TextView
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         namePromptTextView = findViewById(R.id.namePromptTextView)
         nameEditText = findViewById(R.id.nameEditText)
         startButton = findViewById(R.id.startButton)
+
+        //Add Name InputFilter for nameEditText
+        nameEditText.filters = arrayOf(Utils.NAME_INPUT_FILTER)
 
         startButton.setOnClickListener {
             namePromptTextView.text = getString(R.string.name_prompt_text)

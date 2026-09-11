@@ -70,7 +70,7 @@
                 android:layout_height="58dp"
                 android:ems="10"
                 android:fontFamily="sans-serif-condensed"
-                android:hint="Name"
+                android:hint="@string/edit_text_hint_text"
                 android:inputType="textPersonName" />
 
             <Button

@@ -7,6 +7,8 @@ Quizzes the user on a certain domain. Current domain available is Country Flags
 
 Utilizes XML views
 
+@Parcelize's Custom objects for serialization
+
 Target SDK 37, Minimum SDK 24
 
 Target Java Version: 11

@@ -6,6 +6,7 @@
     <string name="welcome_text">Welcome</string>
     <string name="name_prompt_text">Please enter your name</string>
     <string name="empty_input_error_text">Empty input</string>
+    <string name="edit_text_hint_text">Name</string>
     <string name="start_btn_text">Start</string>
 
     <!--Quiz Activity-->
