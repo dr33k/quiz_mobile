@@ -17,4 +17,5 @@
 
 <!--    Results Activity-->
     <string name="results_text">The results are in %s. You scored</string>
+    <string name="retry_btn_text">Retry</string>
 </resources>

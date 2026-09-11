@@ -22,3 +22,5 @@ Kotlin: 2.4.20
 ![Screenshot (17).png](./md_images/Screenshot17.png)
 
 ![Screenshot (18).png](./md_images/Screenshot18.png)
+
+![Screenshot19.png](md_images/Screenshot19.png)
