@@ -15,7 +15,7 @@ Target Java Version: 11
 
 Kotlin: 2.4.20
 
-TODO: Remit $25 for Android Developer registration fee in order to release app on Google Play Store
+TODO: Remit  $25 for Android Developer registration fee in order to release app on Google Play Store
 
 ![Screenshot (12).png](./md_images/Screenshot12.png)
 
