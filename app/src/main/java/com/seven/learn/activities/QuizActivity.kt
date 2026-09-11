@@ -1,7 +1,7 @@
 package com.seven.learn.activities
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -15,6 +15,7 @@ import com.seven.learn.fragments.BottomSheet
 import com.seven.learn.modela.Player
 import com.seven.learn.modela.Question
 import com.seven.learn.util.Constants
+import com.seven.learn.util.Utils
 import kotlin.random.Random
 
 class QuizActivity : AppCompatActivity() {
@@ -51,7 +52,7 @@ class QuizActivity : AppCompatActivity() {
         )
         checkButton = findViewById(R.id.quizCheckButton)
 
-        player = extractPlayerExtra()
+        player = Utils.extractPlayerExtra(intent)
 
         countryCodeList = Constants.COUNTRY_MAP.keys.toList()
 
@@ -86,19 +87,18 @@ class QuizActivity : AppCompatActivity() {
             BottomSheet.newInstance(isCorrectAnswer){
                 if(qIterator.hasNext()){
                     question = displayNextQuestion(qIterator)
+                } else{
+                    Intent(this@QuizActivity, ResultsActivity::class.java).apply {
+                        putExtras(intent)
+                    }.let {
+                        startActivity(it)
+                        finish()
+                    }
                 }
             }.show(supportFragmentManager, "")
         }
     }
 
-
-
-    private fun extractPlayerExtra(): Player? =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            intent.getParcelableExtra(Constants.PLAYER_KEY, Player::class.java)
-        } else {
-            intent.getParcelableExtra<Player>(Constants.PLAYER_KEY)
-        }
 
     fun displayNextQuestion(qIterator: Iterator<Question>): Question{
         val question = qIterator.next()

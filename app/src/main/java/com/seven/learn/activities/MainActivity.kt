@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var startButton: Button
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,17 +40,18 @@ class MainActivity : AppCompatActivity() {
 
             val playerName = nameEditText.text.toString()
 
-            if(playerName.isBlank()){
+            if (playerName.isBlank()) {
                 namePromptTextView.text = getString(R.string.empty_input_error_text)
                 namePromptTextView.setTextColor(Color.RED)
                 return@setOnClickListener
             }
 
-            Intent(this@MainActivity, QuizActivity::class.java).apply{
-                with(this){
-                    putExtra(Constants.PLAYER_KEY, Player(playerName))
-                }
-            }.also { startActivity(it) }
+            Intent(this@MainActivity, QuizActivity::class.java).apply {
+                putExtra(Constants.PLAYER_KEY, Player(playerName))
+            }.also {
+                startActivity(it)
+                finish()
+            }
         }
     }
 }

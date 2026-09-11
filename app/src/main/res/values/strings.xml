@@ -14,4 +14,7 @@
 
     <string name="bottom_sheet_title_text"> </string>
     <string name="bottom_sheet_next_button_text">Next</string>
+
+<!--    Results Activity-->
+    <string name="results_text">The results are in %s. You scored</string>
 </resources>
