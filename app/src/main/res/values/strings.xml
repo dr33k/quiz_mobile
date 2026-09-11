@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">seven_learn</string>
+    <string name="app_name">Seven Learn</string>
 
     <!-- Main Activity -->
     <string name="main_banner_text">Seven Learn</string>
